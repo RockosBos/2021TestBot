@@ -5,8 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -16,6 +17,12 @@ import edu.wpi.first.wpilibj2.command.Command;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+  static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
+
+  public static double GetDriverRawAccess(int axis) {
+    return driveController.getRawAxis(axis);
+  }
   // The robot's subsystems and commands are defined here...
 
   /**

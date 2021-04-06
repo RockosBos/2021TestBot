@@ -4,19 +4,27 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.commands.TankDrive;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-/** Add your docs here. */
-public class drive extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  WPI_VictorSPX leftDrive = new WPI_VictorSPX(0);
-  WPI_VictorSPX rightDrive = new WPI_VictorSPX(1);
+public class drive extends SubsystemBase {
 
-  @Override
+  private WPI_VictorSPX leftDrive = new WPI_VictorSPX(Constants.MOTOR_LEFT_ID);
+  private WPI_VictorSPX rightDrive = new WPI_VictorSPX(Constants.MOTOR_RIGHT_ID);
+
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new TankDrive());
+  }
+
+  public void setLeftMotors(double speed) {
+    leftDrive.set(ControlMode.PercentOutput, -speed);
+  }
+
+  public void setRightMotors(double speed) {
+    rightDrive.set(ControlMode.PercentOutput, speed);
   }
 }
