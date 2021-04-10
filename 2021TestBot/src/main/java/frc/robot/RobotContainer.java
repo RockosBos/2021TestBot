@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.DriveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -18,7 +21,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class RobotContainer {
 
+  public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
+  private final Drive m_Drive = new Drive();
 
   public static double GetDriverRawAccess(int axis) {
     return driveController.getRawAxis(axis);
@@ -29,6 +34,10 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    m_DriveSubsystem.setDefaultCommand(new RunCommand(
+        () -> m_DriveSubsystem.drive(driveController.getRawAxis(1), driveController.getRawAxis(0)), m_DriveSubsystem));
+
     // Configure the button bindings
     configureButtonBindings();
   }
