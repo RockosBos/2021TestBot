@@ -22,6 +22,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
 
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
+  public TestSubsystem test = new TestSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
   private final Drive m_Drive = new Drive();
 
@@ -35,9 +36,11 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-    m_DriveSubsystem.setDefaultCommand(new RunCommand(
+    /*m_DriveSubsystem.setDefaultCommand(new RunCommand(
         () -> m_DriveSubsystem.drive(driveController.getRawAxis(1), driveController.getRawAxis(0)), m_DriveSubsystem));
-
+    */
+    TestSubsystem.setDefaultCommand(new RunCommand(
+    () -> TestSubsystem.spin(.5)));
     // Configure the button bindings
     configureButtonBindings();
   }
