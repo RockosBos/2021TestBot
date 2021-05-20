@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.Drive;
+import frc.robot.commands.Solanoid;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.SolanoidSubsystem;
+import frc.robot.commands.Solanoid;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -22,8 +25,10 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
 
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
-  public TestSubsystem test = new TestSubsystem();
+  public SolanoidSubsystem m_SolanoidSystem = new SolanoidSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
+  public Solanoid solanoidCommand = new Solanoid();
+  
   private final Drive m_Drive = new Drive();
 
   public static double GetDriverRawAccess(int axis) {
@@ -36,14 +41,19 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-    /*m_DriveSubsystem.setDefaultCommand(new RunCommand(
+    m_DriveSubsystem.setDefaultCommand(new RunCommand(
         () -> m_DriveSubsystem.drive(driveController.getRawAxis(1), driveController.getRawAxis(0)), m_DriveSubsystem));
-    */
-    TestSubsystem.setDefaultCommand(new RunCommand(
-    () -> TestSubsystem.spin(.5)));
+
+    for(int x = 0; x < 5; x++){
+
+    m_SolanoidSystem.setDefaultCommand(new RunCommand(
+      () -> m_SolanoidSystem.setSolanoidTrue()));
+
+    }
+    
     // Configure the button bindings
     configureButtonBindings();
-  }
+  }.
 
   /**
    * Use this method to define your button->command mappings. Buttons can be

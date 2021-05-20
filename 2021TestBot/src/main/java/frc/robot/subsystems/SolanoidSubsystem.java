@@ -5,20 +5,13 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Spark;
 
-public class test extends SubsystemBase {
-  /** Creates a new test. */
-
-  private Spark spark = new Spark(3);
-
-  public spin(double speed) {
-    spark.set(speed);
-  }
+public class SolanoidSubsystem extends SubsystemBase {
+  /** Creates a new SolanoidSubsystem. */
+  public SolanoidSubsystem() {}
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println("Check");
   }
 }
