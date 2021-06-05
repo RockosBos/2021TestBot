@@ -5,10 +5,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Joystick;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
@@ -17,15 +16,17 @@ public class ShooterTurnSubsystem extends SubsystemBase {
   public WPI_VictorSPX shooterTurnDrive = new WPI_VictorSPX(Constants.MOTOR_SHOOTERTURN_ID);
 
   /** Creates a new ShooterTurnSubsystem. */
-  public ShooterTurnRight() {
-    
+  public void ShooterTurn(Joystick controller){
+    if(controller.getRawButton(3)){
+      shooterTurnDrive.set(Constants.SHOOTER_TURN_SPEED);
+    }
+    else if(controller.getRawButton(4)){
+      shooterTurnDrive.set(-Constants.SHOOTER_TURN_SPEED);
+    }
+    else{
+      shooterTurnDrive.set(0);
+    }
   }
-
-  public ShooterTurnLeft(){
-
-
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

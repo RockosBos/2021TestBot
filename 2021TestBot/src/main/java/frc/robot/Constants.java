@@ -15,8 +15,14 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int MOTOR_LEFT_ID = 1;
-    public static final int MOTOR_RIGHT_ID = 2;
+    //Motor IDs
+    public static final int MOTOR_RIGHT_ID = 1;
+    public static final int MOTOR_LEFT_ID = 2;
+    public static final int MOTOR_SHOOTERTURN_ID = 3;
+
+    //Speeds
+
+    public static final double SHOOTER_TURN_SPEED = .25;
 
     public static final int JOYSTICK_Y = 1;
 
