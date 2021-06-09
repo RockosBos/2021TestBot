@@ -37,22 +37,23 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    //Drive
+    // Drive
     m_DriveSubsystem.setDefaultCommand(new RunCommand(
         () -> m_DriveSubsystem.drive(driveController.getRawAxis(1), driveController.getRawAxis(0)), m_DriveSubsystem));
 
-    //Solanoid Control *WIP*
-    m_SolanoidSystem.setDefaultCommand(new RunCommand(
-        () -> m_SolanoidSystem.solanoidControl(driveController)));
+    // Solanoid Control *WIP*
 
-    //Solanoid Loop *WIP*
+    m_SolanoidSystem
+        .setDefaultCommand(new RunCommand(() -> m_SolanoidSystem.solanoidControl(driveController), m_SolanoidSystem));
 
-    //Shooter Turn
-    m_SolanoidSystem.setDefaultCommand(new RunCommand(
-        () -> m_SolanoidSystem.solanoidControl(driveController)));
-    
+    // Solanoid Loop *WIP*
+
+    // Shooter Turn
+    m_ShooterTurnSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_ShooterTurnSubsystem.ShooterTurn(driveController), m_ShooterTurnSubsystem));
+
     // Configure the button bindings
-    
+
     configureButtonBindings();
   }
 

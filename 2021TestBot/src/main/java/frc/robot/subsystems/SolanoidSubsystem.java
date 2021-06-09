@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -15,16 +15,14 @@ public class SolanoidSubsystem extends SubsystemBase {
 
   /** Creates a new SolanoidSubsystem. */
 
-  public void solanoidControl(Joystick controller){
-    if(controller.getRawButton(12)){
-      doubleSolenoid.set(Value.kForward);
-    }
-    else if(controller.getRawButton(13)){
-      doubleSolenoid.set(Value.kReverse);
-    }
-    else{
-      doubleSolenoid.set(Value.kOff);
+  public void solanoidControl(Joystick controller) {
+    if (controller.getPOV() == 0) {
+      doubleSolenoid.set(kForward);
+    } else if (controller.getPOV() == 180) {
+      doubleSolenoid.set(kReverse);
+    } else {
+      doubleSolenoid.set(kOff);
     }
   }
- 
+
 }
