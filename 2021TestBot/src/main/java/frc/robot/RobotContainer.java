@@ -7,10 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import frc.robot.commands.Drive;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ShooterTurnSubsystem;
+import frc.robot.subsystems.SolanoidSubsystem;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -22,8 +23,10 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
 
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
+  public SolanoidSubsystem m_SolanoidSystem = new SolanoidSubsystem();
+  public ShooterTurnSubsystem m_ShooterTurnSubsystem = new ShooterTurnSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
-  private final Drive m_Drive = new Drive();
+  public Compressor compressor = new Compressor();
 
   public static double GetDriverRawAccess(int axis) {
     return driveController.getRawAxis(axis);
@@ -34,11 +37,23 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-
+    // Drive
     m_DriveSubsystem.setDefaultCommand(new RunCommand(
         () -> m_DriveSubsystem.drive(driveController.getRawAxis(1), driveController.getRawAxis(0)), m_DriveSubsystem));
 
+    // Solanoid Control *WIP*
+
+    m_SolanoidSystem
+        .setDefaultCommand(new RunCommand(() -> m_SolanoidSystem.solanoidControl(driveController), m_SolanoidSystem));
+
+    // Solanoid Loop *WIP*
+
+    // Shooter Turn
+    m_ShooterTurnSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_ShooterTurnSubsystem.ShooterTurn(driveController), m_ShooterTurnSubsystem));
+
     // Configure the button bindings
+
     configureButtonBindings();
   }
 

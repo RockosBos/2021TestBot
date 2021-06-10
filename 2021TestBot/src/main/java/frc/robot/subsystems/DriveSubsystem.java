@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.Drive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -24,6 +23,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DifferentialDrive base = new DifferentialDrive(leftMotors, rightMotors);
 
   public void drive(double speed, double angle) {
+    System.out.println("Drive");
     base.arcadeDrive(speed, angle);
   }
 
