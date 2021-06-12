@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.subsystems.CompressorSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ShooterTurnSubsystem;
 import frc.robot.subsystems.SolanoidSubsystem;
@@ -22,11 +23,12 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class RobotContainer {
 
+  public CompressorSubsystem m_CompressorSubsystem = new CompressorSubsystem();
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
   public SolanoidSubsystem m_SolanoidSystem = new SolanoidSubsystem();
   public ShooterTurnSubsystem m_ShooterTurnSubsystem = new ShooterTurnSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
-  public Compressor compressor = new Compressor();
+
 
   public static double GetDriverRawAccess(int axis) {
     return driveController.getRawAxis(axis);
@@ -46,7 +48,11 @@ public class RobotContainer {
     m_SolanoidSystem
         .setDefaultCommand(new RunCommand(() -> m_SolanoidSystem.solanoidControl(driveController), m_SolanoidSystem));
 
-    // Solanoid Loop *WIP*
+    // Compressor Control
+
+    m_CompressorSubsystem.setDefaultCommand(new RunCommand(
+        () -> m_CompressorSubsystem.compressorControl(driveController), m_CompressorSubsystem));
+    System.out.println(m_CompressorSubsystem.compressorValue());
 
     // Shooter Turn
     m_ShooterTurnSubsystem.setDefaultCommand(

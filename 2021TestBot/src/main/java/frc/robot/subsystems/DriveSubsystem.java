@@ -24,7 +24,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void drive(double speed, double angle) {
     System.out.println("Drive");
-    base.arcadeDrive(speed, angle);
+    base.arcadeDrive(-speed, -angle);
   }
 
   public void initDefaultCommand() {
