@@ -11,19 +11,12 @@ public class CompressorSubsystem extends SubsystemBase {
     boolean bool = false;
     boolean value;
     public void compressorControl(Joystick controller){
-       /* if(controller.getRawButton(12)){
-            if(bool){
-                bool = false;
-            }
-            else{
-                bool = true;
-            }
-        }*/
-        if(controller.getRawButton(12)){
+    
+        if(controller.getRawButton(12)){ //compressor on
             compressor.start();
             
         }
-        else{
+        if(controller.getRawButton(11)){ //compressor off
             compressor.stop();
         }
     
