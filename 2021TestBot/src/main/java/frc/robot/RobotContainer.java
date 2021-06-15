@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.CompressorSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ShooterSolenoidSubsystem;
 import frc.robot.subsystems.ShooterTurnSubsystem;
 import frc.robot.subsystems.SolanoidSubsystem;
 import edu.wpi.first.wpilibj.Compressor;
@@ -27,8 +28,8 @@ public class RobotContainer {
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
   public SolanoidSubsystem m_SolanoidSystem = new SolanoidSubsystem();
   public ShooterTurnSubsystem m_ShooterTurnSubsystem = new ShooterTurnSubsystem();
+  public ShooterSolenoidSubsystem m_ShooterSolenoidSubsystem = new ShooterSolenoidSubsystem();
   static Joystick driveController = new Joystick(Constants.DRIVE_CONTROLLER);
-
 
   public static double GetDriverRawAccess(int axis) {
     return driveController.getRawAxis(axis);
@@ -50,13 +51,16 @@ public class RobotContainer {
 
     // Compressor Control
 
-    m_CompressorSubsystem.setDefaultCommand(new RunCommand(
-        () -> m_CompressorSubsystem.compressorControl(driveController), m_CompressorSubsystem));
+    m_CompressorSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_CompressorSubsystem.compressorControl(driveController), m_CompressorSubsystem));
     System.out.println(m_CompressorSubsystem.compressorValue());
 
     // Shooter Turn
     m_ShooterTurnSubsystem.setDefaultCommand(
         new RunCommand(() -> m_ShooterTurnSubsystem.ShooterTurn(driveController), m_ShooterTurnSubsystem));
+
+    m_ShooterSolenoidSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_ShooterSolenoidSubsystem.shooterControl(driveController), m_ShooterSolenoidSubsystem));
 
     // Configure the button bindings
 

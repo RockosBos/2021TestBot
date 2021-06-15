@@ -21,7 +21,7 @@ public class CompressorSubsystem extends SubsystemBase {
         }*/
         if(controller.getRawButton(12)){
             compressor.start();
-
+            
         }
         else{
             compressor.stop();
