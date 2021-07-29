@@ -17,13 +17,24 @@ public class CompressorSubsystem extends SubsystemBase {
     boolean bool = false;
     boolean value;
     AnalogInput pressureSensor = new AnalogInput(0);
-    double pressure = 0;
+    public static double pressure = 0;
     double maxPressure;
+    SendableChooser<Double> maxPressureChooser = new SendableChooser<>();
 
     public void compressorControl(Joystick controller) {
+
+        SmartDashboard.putData("Max Pressure", maxPressureChooser);
+        SmartDashboard.putNumber("Pressure", Math.round(pressure * 1000) / 1000);
+
+        maxPressureChooser.setDefaultOption("90 PSI", 90.0);
+        maxPressureChooser.addOption("80 PSI", 80.0);
+        maxPressureChooser.addOption("70 PSI", 70.0);
+        maxPressureChooser.addOption("60 PSI", 60.0);
+        maxPressureChooser.addOption("50 PSI", 50.0);
+        maxPressureChooser.addOption("40 PSI", 40.0);
+
         pressure = convertVoltageToPressure(pressureSensor.getAverageVoltage());
-        maxPressure = SmartDashboard.getNumber("Max Pressure", 40);
-        System.out.println(maxPressure);
+        maxPressure = maxPressureChooser.getSelected();
         /*
          * if(controller.getRawButton(12)){ if(bool){ bool = false; } else{ bool = true;
          * } }
@@ -34,7 +45,6 @@ public class CompressorSubsystem extends SubsystemBase {
         } else {
             compressor.stop();
         }
-        updateDashboard();
 
     }
 
@@ -52,17 +62,4 @@ public class CompressorSubsystem extends SubsystemBase {
     public void initDefaultCommand() {
     }
 
-    public void updateDashboard() {
-        SendableChooser maxPressureChooser = new SendableChooser<>();
-        maxPressureChooser.setDefaultOption("90 PSI", 90);
-        maxPressureChooser.addOption("80 PSI", 80);
-        maxPressureChooser.addOption("70 PSI", 70);
-        maxPressureChooser.addOption("60 PSI", 60);
-        maxPressureChooser.addOption("50 PSI", 50);
-        maxPressureChooser.addOption("40 PSI", 40);
-
-        SmartDashboard.putData("Max Pressure", maxPressureChooser);
-        SmartDashboard.putNumber("Pressure", Math.round(pressure * 1000) / 1000);
-
-    }
 }

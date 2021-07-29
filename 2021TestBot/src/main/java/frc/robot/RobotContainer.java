@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class RobotContainer {
 
-  public CompressorSubsystem m_CompressorSubsystem = new CompressorSubsystem();
+  public static CompressorSubsystem m_CompressorSubsystem = new CompressorSubsystem();
   public DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
   public SolanoidSubsystem m_SolanoidSystem = new SolanoidSubsystem();
   public ShooterTurnSubsystem m_ShooterTurnSubsystem = new ShooterTurnSubsystem();
@@ -64,7 +64,7 @@ public class RobotContainer {
     m_ShooterSolenoidSubsystem.setDefaultCommand(
         new RunCommand(() -> m_ShooterSolenoidSubsystem.shooterControl(driveController), m_ShooterSolenoidSubsystem));
 
-    m_LED.setDefaultCommand(new RunCommand(() -> m_LED.setTestLED(), m_LED));
+    m_LED.setDefaultCommand(new RunCommand(() -> m_LED.pressureBasedLED(), m_LED));
 
     // Configure the button bindings
 
