@@ -12,10 +12,8 @@ public class ShooterSolenoidSubsystem extends SubsystemBase {
     public void shooterControl(Joystick controller) {
         if (controller.getRawButton(1)) {
             shooterSolenoid.set(true);
-            System.out.println("True");
         } else {
             shooterSolenoid.set(false);
-            System.out.println("False");
         }
     }
 }
