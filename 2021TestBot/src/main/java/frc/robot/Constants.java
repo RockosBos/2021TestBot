@@ -24,6 +24,8 @@ public final class Constants {
 
     public static final double SHOOTER_TURN_SPEED = .25;
 
+    public static final double TURN_SPEED_MODIFIER = .5;
+
     public static final int JOYSTICK_Y = 1;
 
     public static final int DRIVE_CONTROLLER = 0;

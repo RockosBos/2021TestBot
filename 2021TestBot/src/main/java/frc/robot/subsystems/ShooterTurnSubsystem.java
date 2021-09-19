@@ -17,7 +17,7 @@ public class ShooterTurnSubsystem extends SubsystemBase {
 
   /** Creates a new ShooterTurnSubsystem. */
   public void ShooterTurn(Joystick controller){
-    if(controller.getRawButton(3)){
+    /*if(controller.getRawButton(3)){
       shooterTurnDrive.set(Constants.SHOOTER_TURN_SPEED);
     }
     else if(controller.getRawButton(4)){
@@ -25,7 +25,9 @@ public class ShooterTurnSubsystem extends SubsystemBase {
     }
     else{
       shooterTurnDrive.set(0);
-    }
+    }*/
+
+    shooterTurnDrive.set(getRawAxis(2) * constants.TURN_SPEED_MODIFIER);
   }
   @Override
   public void periodic() {
