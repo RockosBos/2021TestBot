@@ -23,7 +23,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DifferentialDrive base = new DifferentialDrive(leftMotors, rightMotors);
 
   public void drive(double speed, double angle) {
-    base.arcadeDrive(-speed, angle);
+    base.arcadeDrive(speed, angle);
   }
 
   public void initDefaultCommand() {
