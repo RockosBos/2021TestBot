@@ -64,7 +64,7 @@ public class RobotContainer {
     m_ShooterSolenoidSubsystem.setDefaultCommand(
         new RunCommand(() -> m_ShooterSolenoidSubsystem.shooterControl(driveController), m_ShooterSolenoidSubsystem));
 
-    m_LED.setDefaultCommand(new RunCommand(() -> m_LED.pressureBasedLED(), m_LED));
+    m_LED.setDefaultCommand(new RunCommand(() -> m_LED.setTestLED(), m_LED));
 
     // Configure the button bindings
 

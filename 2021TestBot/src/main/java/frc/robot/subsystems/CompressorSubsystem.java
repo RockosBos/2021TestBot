@@ -39,7 +39,7 @@ public class CompressorSubsystem extends SubsystemBase {
          * if(controller.getRawButton(12)){ if(bool){ bool = false; } else{ bool = true;
          * } }
          */
-        if (controller.getRawButton(12) && pressure < maxPressure) {
+        if (pressure < maxPressure) {
             compressor.start();
 
         } else {
